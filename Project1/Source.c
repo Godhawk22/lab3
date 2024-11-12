@@ -4,7 +4,7 @@
 #include <string.h>
 #include <windows.h>
 struct node {
-    char inf[256];       // полезная информация
+    char inf[100];       // полезная информация
     int priority;        // приоритет
     struct node* next;   // ссылка на следующий элемент
 };
@@ -12,14 +12,14 @@ struct node {
 struct node* head = NULL, * last = NULL;
 
 // Функции
-void spstore_priority(void);
+void add_to_list(void);
 void review(void);
 struct node* get_struct_priority(void);
 
 // Функция создания элемента с приоритетом
 struct node* get_struct_priority(void) {
     struct node* p = NULL;
-    char s[256];
+    char s[100];
     int priority;
 
     if ((p = (struct node*)malloc(sizeof(struct node))) == NULL) {
@@ -40,7 +40,7 @@ struct node* get_struct_priority(void) {
 }
 
 // Функция добавления элемента с учетом приоритета
-void spstore_priority(void) {
+void add_to_list(void) {
     struct node* p = NULL;
     p = get_struct_priority();
 
@@ -83,8 +83,15 @@ void review(void) {
 int main() {
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
-    spstore_priority(); // Добавляем элемент с приоритетом
-    spstore_priority(); // Добавляем еще один элемент
-    review();           // Просматриваем очередь
+    int i = 4;
+    
+    printf("Введите кол-во объектов: \n");
+    scanf("%d", &i);
+    
+    while(i > 0) {
+        add_to_list();
+        i = i - 1;
+    }
+    review();   // Просматриваем очередь
     return 0;
 }
